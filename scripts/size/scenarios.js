@@ -2896,7 +2896,7 @@ module.exports = [
     // (12,695 -> 12,708), fb4e637ad moved `sharedConfig` after it (12,708 ->
     // 12,704); both modules are external, so the bytes are brotli layout
     // across the two import statements, as in the #3470 note above.
-    // Size-Exception (binding-slot text positions, 2026-09-29): 12.71 ->
+    // Size-Exception (#3714, 2026-09-29): 12.71 ->
     // 12.98 KB, measured at 12,974 B against #3713 @ 06935ab78's 12,706
     // (+268 B; 264 B over the cap; +760 B minified, 40,226 -> 40,986). A
     // binding-slot value placed as a child is a position the client owns:
@@ -2996,7 +2996,7 @@ module.exports = [
     // note, reaching this page through the frames client's container-trace
     // materializer. Accepted by the maintainer. The cap is frozen again at
     // 45.91 KB.
-    // Size-Exception (binding-slot text positions, 2026-09-29): 45.91 ->
+    // Size-Exception (#3714, 2026-09-29): 45.91 ->
     // 46.16 KB, measured at 46,155 B against #3713 @ 06935ab78's 45,901
     // (+254 B; 245 B over the cap; +760 B minified). The frames client's
     // text-position bytes (the frames note, +268 B there); nothing of this
@@ -3070,7 +3070,7 @@ module.exports = [
     // instead of a memo and an own listener; the code shrinks, and brotli
     // layout amplifies it here (the frames scenario measures +2 B). Accepted
     // by the maintainer. The cap is frozen again at 50.15 KB.
-    // Size-Exception (binding-slot text positions, 2026-09-29): 50.15 ->
+    // Size-Exception (#3714, 2026-09-29): 50.15 ->
     // 50.35 KB, measured at 50,349 B against #3713 @ 06935ab78's 50,141
     // (+208 B; 199 B over the cap; +760 B minified). The same text-position
     // bytes as the base page; brotli layout absorbs some of them here.
