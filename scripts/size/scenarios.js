@@ -2896,7 +2896,22 @@ module.exports = [
     // (12,695 -> 12,708), fb4e637ad moved `sharedConfig` after it (12,708 ->
     // 12,704); both modules are external, so the bytes are brotli layout
     // across the two import statements, as in the #3470 note above.
-    limit: "12.71 KB",
+    // Size-Exception (binding-slot text positions, 2026-09-29): 12.71 ->
+    // 12.98 KB, measured at 12,974 B against #3713 @ 06935ab78's 12,706
+    // (+268 B; 264 B over the cap; +760 B minified, 40,226 -> 40,986). A
+    // binding-slot value placed as a child is a position the client owns:
+    // `collectSlots` registers each `<!--_s:t=…-->` pair on its parent
+    // element's consumer entry for the occurrence, `consumersEqual` compares
+    // the start marker, the occurrence's render effect writes the one text
+    // node between the markers (creating it when absent), and
+    // `reconcileChildren` keeps a pair it meets again. Dev-only (the
+    // `text-shape` reporter) is 0 B here. Trimmed before accepting (entry
+    // parsing shared with `slotPositions`, one consumer-list helper, the end
+    // walk shared with `afterRange`); discovering pairs from `slotPositions`
+    // over an element's direct children was weighed and rejected (~100 B
+    // for a new rule: no text position at a component's top level).
+    // Accepted by the maintainer. The cap is frozen again at 12.98 KB.
+    limit: "12.98 KB",
     alias: framesAlias,
     external: framesExternal
   },
@@ -2981,6 +2996,12 @@ module.exports = [
     // note, reaching this page through the frames client's container-trace
     // materializer. Accepted by the maintainer. The cap is frozen again at
     // 45.91 KB.
+    // Size-Exception (binding-slot text positions, 2026-09-29): 45.91 ->
+    // 46.16 KB, measured at 46,155 B against #3713 @ 06935ab78's 45,901
+    // (+254 B; 245 B over the cap; +760 B minified). The frames client's
+    // text-position bytes (the frames note, +268 B there); nothing of this
+    // page's own. Accepted by the maintainer. The cap is frozen again at
+    // 46.16 KB.
     limit: floorCaps["page: base server components (hydrating + dynamic + frames + sf reference)"],
     alias: pageAlias
   },
@@ -3049,6 +3070,11 @@ module.exports = [
     // instead of a memo and an own listener; the code shrinks, and brotli
     // layout amplifies it here (the frames scenario measures +2 B). Accepted
     // by the maintainer. The cap is frozen again at 50.15 KB.
+    // Size-Exception (binding-slot text positions, 2026-09-29): 50.15 ->
+    // 50.35 KB, measured at 50,349 B against #3713 @ 06935ab78's 50,141
+    // (+208 B; 199 B over the cap; +760 B minified). The same text-position
+    // bytes as the base page; brotli layout absorbs some of them here.
+    // Accepted by the maintainer. The cap is frozen again at 50.35 KB.
     limit: floorCaps["page: live server components (base + live/GET + action + isPending/latest)"],
     alias: pageAlias
   }
