@@ -3043,7 +3043,7 @@ module.exports = [
     // cap; +581 B minified). Same adoption-hold change as the base page's
     // note (+143 B there). Accepted by the maintainer. The cap is frozen
     // again at 50.09 KB.
-    // Size-Exception (binding-slot execution, 2026-09-29): 50.09 -> 50.15 KB,
+    // Size-Exception (#3713, 2026-09-29): 50.09 -> 50.15 KB,
     // measured at 50,141 B against `next` @ bf87f27de's 50,085 (+56 B; 51 B
     // over the cap; -5 B minified). The fill runs once through `assign`
     // instead of a memo and an own listener; the code shrinks, and brotli
