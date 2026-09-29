@@ -3,5 +3,5 @@
   "app: render + one signal (the simple-app floor)": "12.05 KB",
   "app: hydrating (no stores) with Show/For/Loading/Errored/lazy": "19.69 KB",
   "page: base server components (hydrating + dynamic + frames + sf reference)": "45.91 KB",
-  "page: live server components (base + live/GET + action + isPending/latest)": "50.09 KB"
+  "page: live server components (base + live/GET + action + isPending/latest)": "50.15 KB"
 }
